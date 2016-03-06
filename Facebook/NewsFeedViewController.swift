@@ -8,27 +8,21 @@
 
 import UIKit
 
-class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDelegate {
+class NewsFeedViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
     
-//    var imageTransition: ImageTransition!
-    var fadeTransition: FadeTransition!
+    var imageTransition: ImageTransition!
     var selectedImageView: UIImageView!
     var endTransition: CGRect!
     
-    var isPresenting: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        imageTransition = ImageTransition()
-//        imageTransition.duration = 5
+        imageTransition = ImageTransition()
 
-        fadeTransition = FadeTransition()
-//        fadeTransition.duration = 1
-        
         scrollView.contentSize = CGSizeMake(320, feedImageView.image!.size.height)
     }
 
@@ -50,26 +44,22 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let destinationViewController = segue.destinationViewController as! PhotoViewController
         destinationViewController.image = selectedImageView.image
-        let transitionImage = UIImageView(image: selectedImageView.image)
         
-        let window = UIApplication.sharedApplication().keyWindow
-        let frame = window!.convertRect(selectedImageView.frame, fromView: scrollView)
-        print(frame)
-        transitionImage.frame = frame
-
-        view.addSubview(transitionImage)
-        transitionImage.center.y = selectedImageView.center.y + 110
+        let window = UIApplication.sharedApplication().keyWindow!
+        let initialImageFrame = window.convertRect(selectedImageView.frame, fromView: scrollView)
         
-        
+        imageTransition.duration = 0.5
+        imageTransition.selectedImageView = selectedImageView
+        imageTransition.initialImageFrame = initialImageFrame
+        destinationViewController.transitioningDelegate = imageTransition
         destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
-//        destinationViewController.transitioningDelegate = imageTransition
-//        imageTransition.duration = 5
-        destinationViewController.transitioningDelegate = fadeTransition
-        fadeTransition.duration = 0.5
-        
-        var identifier = segue.identifier
         
     }
+    
+    // MARK: - 
+    
+    
+    // MARK: - Actions
     
     @IBAction func onPhotoTap(sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
