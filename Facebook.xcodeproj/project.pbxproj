@@ -102,7 +102,6 @@
 				42167674198EAAC6008CCBC3 /* View Controllers */,
 				42167655198E3220008CCBC3 /* AppDelegate.swift */,
 				42167659198E3220008CCBC3 /* Main.storyboard */,
-				3BF470411C8BC3900076E5CB /* PhotoViewController.swift */,
 				4216765C198E3220008CCBC3 /* Images.xcassets */,
 				42167653198E3220008CCBC3 /* Supporting Files */,
 			);
@@ -141,6 +140,7 @@
 				3BF470451C8BCB1C0076E5CB /* FadeTransition.swift */,
 				3BF470471C8BCC1D0076E5CB /* ImageTransition.swift */,
 				42167679198ECE88008CCBC3 /* NewsFeedViewController.swift */,
+				3BF470411C8BC3900076E5CB /* PhotoViewController.swift */,
 				42167677198ECE0E008CCBC3 /* RequestsViewController.swift */,
 				429277A1198F35B600E19641 /* MessagesViewController.swift */,
 				42167675198ECA7C008CCBC3 /* NotificationsViewController.swift */,
