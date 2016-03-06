@@ -11,6 +11,7 @@ import UIKit
 class FadeTransition: BaseTransition {
     
     override func presentTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
+        print("FADING IN")
         
         toViewController.view.alpha = 0
         UIView.animateWithDuration(duration, animations: {
@@ -21,6 +22,7 @@ class FadeTransition: BaseTransition {
     }
     
     override func dismissTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
+        print("FADING OUT")
         
         fromViewController.view.alpha = 1
         UIView.animateWithDuration(duration, animations: {
