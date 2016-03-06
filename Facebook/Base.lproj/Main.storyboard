@@ -493,7 +493,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="1U9-ZF-ELc" id="k3f-lU-Nhs"/>

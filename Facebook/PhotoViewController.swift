@@ -17,7 +17,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var photoActionsView: UIImageView!
     
     var image: UIImage!
-    let backgroundViewColor = UIColor(white: 0, alpha: 1)
+    var backgroundViewColor = UIColor(white: 0, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()

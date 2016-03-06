@@ -13,24 +13,27 @@ class ImageTransition: BaseTransition {
     var selectedImageView = UIImageView()
 
     override func presentTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
-        toViewController.view.alpha = 0
+        let destinationViewController = toViewController as! PhotoViewController
+        destinationViewController.imageView.alpha = 0
         
         let transitionImage = UIImageView(image: selectedImageView.image)
+        transitionImage.contentMode = selectedImageView.contentMode
         transitionImage.frame = initialImageFrame
         transitionImage.center.y = selectedImageView.center.y + 110
         
         let endWidth = CGFloat(320)
         let endHeight = (initialImageFrame.height / initialImageFrame.width) * endWidth
-        let endCenterY = (toViewController.view.frame.height - endHeight) / 2
-        
+        let endCenterY = (destinationViewController.view.frame.height - endHeight) / 2
 
         containerView.addSubview(transitionImage)
         
+        destinationViewController.backgroundView.backgroundColor = UIColor(white: 0, alpha: 0)
         UIView.animateWithDuration(duration, animations: {
-            transitionImage.center = toViewController.view.center
+            transitionImage.center = destinationViewController.view.center
             transitionImage.frame = CGRect(x: 0, y: endCenterY, width: endWidth, height: endHeight)
+            destinationViewController.backgroundView.backgroundColor = UIColor(white: 0, alpha: 1)
         }) { (finished: Bool) -> Void in
-            toViewController.view.alpha = 1
+            destinationViewController.imageView.alpha = 1
             transitionImage.removeFromSuperview()
             self.finish()
         }
