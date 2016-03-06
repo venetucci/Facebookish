@@ -11,25 +11,30 @@ import UIKit
 class PhotoViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Properties
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var photoActionsView: UIImageView!
     
-    var image: UIImage!
-    var backgroundViewColor = UIColor(white: 0, alpha: 1)
+    let backgroundViewColor = UIColor(white: 0, alpha: 1)
+    var imageViews = [UIImageView]()
+    var currentImageViewIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        imageView.image = image
-        
         backgroundView.backgroundColor = backgroundViewColor
         
-        scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: 320, height: 1000)
+        for imageIndex in 0...4 {
+            let imageView = UIImageView(image: UIImage(named: "wedding\(imageIndex + 1)"))
+            imageView.frame = buildImageFrame(imageView, imageIndex: imageIndex)
+            
+            imageViews.append(imageView)
+            scrollView.addSubview(imageView)
+        }
         
+        scrollView.delegate = self
+        scrollView.contentSize = CGSize(width: 1600, height: 1000)
     }
     
     
@@ -50,9 +55,16 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return imageView
+        return scrollView
     }
     
+    func buildImageFrame(imageView: UIImageView, imageIndex: Int) -> CGRect {
+        let endWidth = CGFloat(320)
+        let endHeight = (imageView.frame.height / imageView.frame.width) * endWidth
+        let endCenterY = (scrollView.frame.height - endHeight) / CGFloat(2)
+        
+        return CGRect(x: CGFloat(imageIndex * 320), y: endCenterY, width: endWidth, height: endHeight)
+    }
     
     // MARK: Actions
     @IBAction func didPressDone(sender: AnyObject) {

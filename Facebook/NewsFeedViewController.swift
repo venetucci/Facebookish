@@ -38,7 +38,8 @@ class NewsFeedViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let destinationViewController = segue.destinationViewController as! PhotoViewController
-        destinationViewController.image = selectedImageView.image
+        
+        destinationViewController.currentImageViewIndex = selectedImageView.tag
         
         configureImageTransition(imageTransition)
         

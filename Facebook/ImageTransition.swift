@@ -18,8 +18,9 @@ class ImageTransition: BaseTransition {
     // MARK: Custom Transition Methods
     override func presentTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
         let destinationViewController = toViewController as! PhotoViewController
-        destinationViewController.imageView.alpha = 0
-        
+        destinationViewController.scrollView.alpha = 0
+        destinationViewController.scrollView.contentOffset.x = CGFloat(destinationViewController.currentImageViewIndex * 320)
+
         let transitionImage = buildTransitionImage()
         let finalImageFrame = buildFinalImageFrame(destinationViewController)
         
@@ -31,7 +32,7 @@ class ImageTransition: BaseTransition {
             transitionImage.frame = finalImageFrame
             destinationViewController.backgroundView.backgroundColor = UIColor(white: 0, alpha: 1)
         }) { (finished: Bool) -> Void in
-            destinationViewController.imageView.alpha = 1
+            destinationViewController.scrollView.alpha = 1
             transitionImage.removeFromSuperview()
             self.finish()
         }
