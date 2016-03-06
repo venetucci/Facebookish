@@ -16,13 +16,14 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
     var imageTransition: ImageTransition!
     var selectedImageView: UIImageView!
     
+    var isPresenting: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imageTransition = ImageTransition()
-        imageTransition.duration = 2
+        imageTransition.duration = 5
 
-        // Configure the content size of the scroll view
         scrollView.contentSize = CGSizeMake(320, feedImageView.image!.size.height)
     }
 
@@ -47,14 +48,12 @@ class NewsFeedViewController: UIViewController, UIViewControllerTransitioningDel
         destinationViewController.image = selectedImageView.image
         
         destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
-        destinationViewController.transitioningDelegate = self
-//        ImageTransition.duration = 2
+        destinationViewController.transitioningDelegate = imageTransition
+        imageTransition.duration = 5
         
 //        var identifier = segue.identifier
         
     }
-    
-    
     
     @IBAction func onPhotoTap(sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView

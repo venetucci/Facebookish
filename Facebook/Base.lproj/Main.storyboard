@@ -465,29 +465,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="jPb-QE-H0R">
+                            <view contentMode="scaleToFill" id="1U9-ZF-ELc">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VQb-VM-tK0">
+                                <rect key="frame" x="261" y="17" width="51" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="didPressDone:" destination="Jqs-E6-Ebw" eventType="touchUpInside" id="mcq-Gm-KzH"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="photo_actions" id="D53-P9-7qG">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" id="jPb-QE-H0R">
+                                <rect key="frame" x="0.0" y="51" width="320" height="517"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="5lB-9v-w3T">
-                                        <rect key="frame" x="0.0" y="51" width="320" height="479"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VQb-VM-tK0">
-                                        <rect key="frame" x="261" y="22" width="51" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="doneButton"/>
-                                        <connections>
-                                            <action selector="didPressDone:" destination="Jqs-E6-Ebw" eventType="touchUpInside" id="mcq-Gm-KzH"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="1U9-ZF-ELc" id="k3f-lU-Nhs"/>
+                        <outlet property="doneButton" destination="VQb-VM-tK0" id="SHa-MY-u4n"/>
                         <outlet property="imageView" destination="5lB-9v-w3T" id="4Xm-Ue-CGr"/>
+                        <outlet property="photoActionsView" destination="D53-P9-7qG" id="AxC-yP-2QJ"/>
+                        <outlet property="scrollView" destination="jPb-QE-H0R" id="cFE-yW-cus"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rn-Pr-v2r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -780,7 +793,6 @@
         <image name="create_checkin" width="320" height="568"/>
         <image name="create_photo" width="320" height="568"/>
         <image name="create_status" width="320" height="568"/>
-        <image name="doneButton" width="51" height="27"/>
         <image name="feed_tab" width="27" height="27"/>
         <image name="home_feed" width="320" height="1438"/>
         <image name="like_btn" width="17" height="40"/>
@@ -793,6 +805,7 @@
         <image name="notifications" width="320" height="818"/>
         <image name="notifications_tab" width="27" height="27"/>
         <image name="people" width="320" height="1006"/>
+        <image name="photo_actions" width="320" height="44"/>
         <image name="requests_tab" width="27" height="27"/>
         <image name="settings" width="320" height="1800"/>
         <image name="wedding1" width="320" height="480"/>
