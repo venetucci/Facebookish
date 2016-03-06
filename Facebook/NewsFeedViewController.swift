@@ -26,11 +26,6 @@ class NewsFeedViewController: UIViewController {
         scrollView.contentSize = CGSizeMake(320, feedImageView.image!.size.height)
     }
 
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -45,19 +40,21 @@ class NewsFeedViewController: UIViewController {
         let destinationViewController = segue.destinationViewController as! PhotoViewController
         destinationViewController.image = selectedImageView.image
         
+        configureImageTransition(imageTransition)
+        
+        destinationViewController.transitioningDelegate = imageTransition
+        destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
+        
+    }
+    
+    private func configureImageTransition(imageTransition: ImageTransition) {
         let window = UIApplication.sharedApplication().keyWindow!
         let initialImageFrame = window.convertRect(selectedImageView.frame, fromView: scrollView)
         
         imageTransition.duration = 0.5
         imageTransition.selectedImageView = selectedImageView
         imageTransition.initialImageFrame = initialImageFrame
-        destinationViewController.transitioningDelegate = imageTransition
-        destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
-        
     }
-    
-    // MARK: - 
-    
     
     // MARK: - Actions
     

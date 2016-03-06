@@ -10,6 +10,7 @@ import UIKit
 
 class PhotoViewController: UIViewController, UIScrollViewDelegate {
     
+    // MARK: Properties
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
@@ -27,29 +28,13 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         backgroundView.backgroundColor = backgroundViewColor
         
         scrollView.delegate = self
-        
         scrollView.contentSize = CGSize(width: 320, height: 1000)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     
-    func scrollViewDidScroll(scrollView: UIScrollView!) {
+    // MARK: UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         let offsetFade = 1 - (scrollView.contentOffset.y / -60)
         
         doneButton.alpha = offsetFade
@@ -58,19 +43,18 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView!,
-        willDecelerate decelerate: Bool) {
-            
-            if scrollView.contentOffset.y < -100 {
-                dismissViewControllerAnimated(true, completion: nil)
-            }
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y < -100 {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
-    
-    func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
+    
+    // MARK: Actions
     @IBAction func didPressDone(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
