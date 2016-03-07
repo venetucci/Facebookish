@@ -55,7 +55,7 @@ class PhotoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return scrollView
+        return imageViews[currentImageViewIndex]
     }
     
     func buildImageFrame(imageView: UIImageView, imageIndex: Int) -> CGRect {

@@ -13,7 +13,6 @@ class ImageTransition: BaseTransition {
     // MARK: Properties
     var initialImageFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
     var selectedImageView = UIImageView()
-
     
     // MARK: Custom Transition Methods
     override func presentTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
